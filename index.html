@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mi Marca</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --negro: #111;
+      --blanco: #fff;
+      --gris-oscuro: #222;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: var(--blanco);
+      color: var(--negro);
+      overflow-x: hidden;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background-color: var(--blanco);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
+
+    .menu-btn {
+      font-size: 1.8rem;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--negro);
+      z-index: 1001;
+    }
+
+    /* MENU LATERAL */
+    .side-menu {
+      position: fixed;
+      top: 70px;
+      right: -250px;
+      width: 250px;
+      height: calc(100% - 70px);
+      background-color: var(--blanco);
+      box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+      transition: right 0.3s ease-in-out;
+      padding: 1.5rem;
+      z-index: 999;
+    }
+
+    .side-menu.active {
+      right: 0;
+    }
+
+    .side-menu ul {
+      list-style: none;
+    }
+
+    .side-menu ul li {
+      padding: 0.8rem 0;
+      border-bottom: 1px solid #eee;
+      font-size: 1.1rem;
+      cursor: pointer;
+    }
+    .side-menu ul li a {
+  text-decoration: none;
+  color: var(--negro);
+  display: block;
+  width: 100%;
+  padding: 0.8rem 0;
+  transition: color 0.3s;
+}
+
+.side-menu ul li a:hover {
+  color: #888;
+}
+
+
+    /* SLIDER */
+    .slider {
+      width: 100%;
+      height: 100vh;
+      position: relative;
+      overflow: hidden;
+      margin-top: 70px;
+    }
+
+    .slider img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      transition: opacity 1.5s ease-in-out;
+    }
+
+    .slider img.active {
+      opacity: 1;
+    }
+
+    footer {
+      background-color: var(--gris-oscuro);
+      color: var(--blanco);
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+
+    footer a {
+      color: var(--blanco);
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 600px) {
+      .logo {
+        font-size: 1.5rem;
+      }
+
+      .menu-btn {
+        font-size: 1.5rem;
+      }
+
+      .slider {
+        height: 80vh;
+      }
+
+      .side-menu {
+        width: 200px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header>
+    <div class="logo">Moda Store</div>
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+  </header>
+
+  <!-- MENU DESLIZANTE -->
+  <nav class="side-menu" id="sideMenu">
+  <ul>
+    <li><a href="ropa.html">Ropa</a></li>
+    <li><a href="tenis.html">Tenis</a></li>
+    <li><a href="bolsas.html">Bolsas</a></li>
+    <li><a href="maquillaje.html">Maquillaje</a></li>
+    <li><a href="skincare.html">Skincare</a></li>
+    <li><a href="termos.html">Termos</a></li>
+  </ul>
+</nav>
+
+
+  <!-- SLIDER -->
+  <section class="slider" id="slider">
+  <img src="img/slide1.jpg" class="active" alt="Slide 1">
+  <img src="img/slide2.jpg" alt="Slide 2">
+  <img src="img/slide3.jpg" alt="Slide 3">
+  <img src="img/slide4.jpg" alt="Slide 4">
+</section>
+
+
+  <!-- FOOTER -->
+  <footer>
+    <p>¿Tienes dudas? <a href="https://wa.me/528441598119" target="_blank">Contáctanos por WhatsApp</a></p>
+    <p>&copy; 2025 Mi Marca. Todos los derechos reservados.</p>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById('sideMenu');
+      menu.classList.toggle('active');
+    }
+
+    // SLIDER
+    const slides = document.querySelectorAll('.slider img');
+    let currentSlide = 0;
+
+    setInterval(() => {
+  slides[currentSlide].classList.remove('active');
+  currentSlide = (currentSlide + 1) % slides.length;
+  slides[currentSlide].classList.add('active');
+}, 3000); // Cambia cada 3 segundos
+
+  </script>
+
+</body>
+</html>
